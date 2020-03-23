@@ -7,7 +7,7 @@ Import the iq_size.csv file
 It Contains the details of 38 students, where
 
 Column 1: The intelligence (PIQ) of students
-Column 2:  The brain size (MRI) of students (given as count/10,000).
+Column 2: The brain size (MRI) of students (given as count/10,000).
 Column 3: The height (Height) of students (inches)
 Column 4: The weight (Weight) of student (pounds)
 
@@ -42,7 +42,7 @@ regressor.fit(features, labels)
 # Here a, b and c are the coefficients and d is the intercept
 print(regressor.intercept_)   
 print (regressor.coef_)
-print (regressor.score(features, labels)*100)   # 29.49
+print (regressor.score(features, labels)*100)   # 29.49 %
 
 # We cannot show a line on a graph as we did for 2D data, since we have 5D data
 # Predicting the Test set results
@@ -63,15 +63,12 @@ print('Iq size of student:',out)
    Height, Weight or brain size.
 """
 
-# add code to automate the p value removing
+# code to automate the p value removing
 import statsmodels.api as sm
 import numpy as np
 
 features_obj = features[:, [0,1,2]]
 features_obj = sm.add_constant(features_obj)
-
-#regressor_OLS = sm.OLS(endog = labels,exog =features_obj).fit()
-#regressor_OLS.summary()
 
 while (True):
     regressor_OLS = sm.OLS(endog = labels,exog =features_obj).fit()
@@ -82,7 +79,9 @@ while (True):
         break
 
 print(features_obj)   ## Brain size 
-print('From the OLS method we conclude that "Brain size" is most useful in predicting.')
+regressor_OLS.summary()
+
+print('From the OLS method we conclude that "Brain size" is most significant in predicting intelligence.')
 
 
 
