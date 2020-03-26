@@ -1,6 +1,5 @@
 #kNN
 
-
 # Open knn_class_prediction.jpg
 """
 We have a training data that has 2 categories
@@ -116,10 +115,8 @@ Classification problem is always like drawing a decission boundary
 LR is a linear Classifer, 
 that means the decission boundary will always be straight line
 
-
 kNN is a non linear Classifier,
 that means the decission boundary will always be nonlinear in nature
-
 """
 
 # Logistic Regression Visualisation ( Classification)
@@ -142,11 +139,11 @@ labels = dataset.iloc[:, 2].values
 from sklearn.model_selection import train_test_split
 features_train, features_test, labels_train, labels_test = train_test_split(features, labels, test_size = 0.25, random_state = 40)
 
-# Feature Scaling
-#from sklearn.preprocessing import StandardScaler
-#sc = StandardScaler()
-#features_train = sc.fit_transform(features_train)
-#features_test = sc.transform(features_test)
+#Feature Scaling
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+features_train = sc.fit_transform(features_train)
+features_test = sc.transform(features_test)
 
 # Fitting Logistic Regression to the Training set
 from sklearn.linear_model import LogisticRegression
@@ -164,7 +161,6 @@ labels_pred = classifier.predict(features_test)
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(labels_test, labels_pred)
 print(cm)
-
 
 
   
@@ -194,8 +190,6 @@ plt.contourf(xx, yy, Z, alpha=0.3)
 plt.show()
 
 # Try to identify the 3 points in the graph according to the CM
-
-
 
 
 # K-Nearest Neighbors (kNN) Visualisation 
@@ -238,9 +232,7 @@ print(cm)
 
 
 #Visualization
-
-# Plot the decision boundary. For that, we will assign a color to each
-   
+# Plot the decision boundary. For that, we will assign a color to each   
 
 x_min, x_max = features_train[:, 0].min() - 1, features_train[:, 0].max() + 1
 y_min, y_max = features_train[:, 1].min() - 1, features_train[:, 1].max() + 1
@@ -274,198 +266,126 @@ https://stackoverflow.com/questions/36013063/what-is-purpose-of-meshgrid-in-pyth
 https://www.kaggle.com/arthurtok/decision-boundaries-visualised-via-python-plotly
 https://stackoverflow.com/questions/20045994/how-do-i-plot-the-decision-boundary-of-a-regression-using-matplotlib
 https://towardsdatascience.com/pca-using-python-scikit-learn-e653f8989e60
-
-
 """
-
-
-
 
 
 """
 Code Challenge
 
 Q1. (Create a program that fulfills the following specification.)
-mushrooms.csv
 
 Import mushrooms.csv file
 
-This dataset includes descriptions of hypothetical samples corresponding to 23 species of gilled mushrooms in the Agaricus and Lepiota Family Mushroom drawn from The Audubon Society Field Guide to North American Mushrooms (1981). Each species is identified as definitely edible, definitely poisonous, or of unknown edibility and not recommended. This latter class was combined with the poisonous one.
+This dataset includes descriptions of hypothetical samples corresponding to 23 
+species of gilled mushrooms in the Agaricus and Lepiota Family Mushroom drawn from 
+The Audubon Society Field Guide to North American Mushrooms (1981). Each species is 
+identified as definitely edible, definitely poisonous, or of unknown edibility and 
+not recommended. This latter class was combined with the poisonous one.
 
- 
 
 Attribute Information:
 
-classes: edible=e, poisonous=p (outcome)
+1. classes: edible=e, poisonous=p (outcome)
+2. cap-shape: bell=b,conical=c,convex=x,flat=f, knobbed=k,sunken=s
+3. cap-surface: fibrous=f,grooves=g,scaly=y,smooth=s
+4. cap-color: brown=n, buff=b,cinnamon=c,gray=g,green=r,pink=p,purple=u,red=e,white=w,
+   yellow=y
+5. bruises: bruises=t, no=f
+6. odor: almond=a,anise=l,creosote=c,fishy=y,foul=f,musty=m,none=n,pungent=p,spicy=s
+7. gill-attachment: attached=a,descending=d,free=f,notched=n
+8. gill-spacing: close=c,crowded=w,distant=d
+9. gill-size: broad=b,narrow=n\
+10. gill-color: black=k,brown=n,buff=b,chocolate=h,gray=g,green=r,orange=o,pink=p,
+    purple=u,red=e,white=w,yellow=y
+11. stalk-shape: enlarging=e,tapering=t
+12. stalk-root: bulbous=b,club=c,cup=u,equal=e,rhizomorphs=z,rooted=r,missing=?
+13. stalk-surface-above-ring: fibrous=f,scaly=y,silky=k,smooth=s
+14. stalk-surface-below-ring: fibrous=f,scaly=y,silky=k,smooth=s
+15. stalk-color-above-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,
+    white=w,yellow=y
+16. stalk-color-below-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,
+    white=w,yellow=y
+17. veil-type: partial=p,universal=u
+18. veil-color: brown=n,orange=o,white=w,yellow=y
+19. ring-number: none=n,one=o,two=t
+20. ring-type: cobwebby=c,evanescent=e,flaring=f,large=l,none=n,pendant=p,sheathing=s,
+    zone=z
+21. spore-print-color: black=k,brown=n,buff=b,chocolate=h,green=r,orange=o,purple=u,
+    white=w,yellow=y
+22. population: abundant=a,clustered=c,numerous=n,scattered=s,several=v,solitary=y
+23. habitat: grasses=g,leaves=l,meadows=m,paths=p,urban=u,waste=w,woods=d
 
-cap-shape: bell=b,conical=c,convex=x,flat=f, knobbed=k,sunken=s
-
-cap-surface: fibrous=f,grooves=g,scaly=y,smooth=s
-
-cap-color: brown=n, buff=b,cinnamon=c,gray=g,green=r,pink=p,purple=u,red=e,white=w,yellow=y
-
- 
-
-bruises: bruises=t, no=f
-
- 
-
-odor: almond=a,anise=l,creosote=c,fishy=y,foul=f,musty=m,none=n,pungent=p,spicy=s
-
- 
-
-gill-attachment: attached=a,descending=d,free=f,notched=n
-
- 
-
-gill-spacing: close=c,crowded=w,distant=d
-
- 
-
-gill-size: broad=b,narrow=n\
-
- 
-
-gill-color: black=k,brown=n,buff=b,chocolate=h,gray=g,
-
-green=r,orange=o,pink=p,purple=u,red=e,white=w,yellow=y
-
- 
-
-stalk-shape: enlarging=e,tapering=t
-
- 
-
-stalk-root: bulbous=b,club=c,cup=u,equal=e,rhizomorphs=z,rooted=r,missing=?
-
- 
-
-stalk-surface-above-ring: fibrous=f,scaly=y,silky=k,smooth=s
-
- 
-
-stalk-surface-below-ring: fibrous=f,scaly=y,silky=k,smooth=s
-
- 
-
-stalk-color-above-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,white=w,yellow=y
-
- 
-
-stalk-color-below-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,white=w,yellow=y
-
- 
-
-veil-type: partial=p,universal=u
-
- 
-
-veil-color: brown=n,orange=o,white=w,yellow=y
-
-ring-number: none=n,one=o,two=t
-
- 
-
-ring-type: cobwebby=c,evanescent=e,flaring=f,large=l,none=n,pendant=p,sheathing=s,zone=z
-
- 
-
-spore-print-color: black=k,brown=n,buff=b,chocolate=h,green=r,orange=o,purple=u,white=w,yellow=y
-
- 
-
-population: abundant=a,clustered=c,numerous=n,scattered=s,several=v,solitary=y
-
- 
-
-habitat: grasses=g,leaves=l,meadows=m,paths=p,urban=u,waste=w,woods=d
-
-    Perform Classification on the given dataset to predict if the mushroom is edible or poisonous w.r.t. it’s different attributes.
+Perform Classification on the given dataset to predict if the mushroom is edible or 
+poisonous w.r.t. it’s different attributes.
 
 (you can perform on habitat, population and odor as the predictors)
 
-    Check accuracy of the model.
-
+class: label 0
+odor: 5
+population: 21
+habitat: 22
+    
+     Check accuracy of the model.
+#####################################################
 
 
 Q2. (Create a program that fulfills the following specification.)
 
-tree_addhealth.csv
-For this Code Challenge, The National Longitudinal Study of Adolescent to Adult Health (Add Health) data set, an ongoing (longitudinal) survey study that began in the mid-1990s is used. The project website URL is:
+For this Code Challenge, The National Longitudinal Study of Adolescent to Adult 
+Health (Add Health) data set, an ongoing (longitudinal) survey study that began in 
+the mid-1990s is used. The project website URL is:
 
 http://www.cpc.unc.edu/projects/addhealth/.
 
-This large data set is available online from the University of North Carolina’s Carolina Population Center, http://www.cpc.unc.edu/projects/addhealth/data.
-
- 
+This large data set is available online from the University of North Carolina’s 
+Carolina Population Center, http://www.cpc.unc.edu/projects/addhealth/data.
 
 Import tree_addhealth.csv
 
- 
-
 The attributes are:
 
- 
+1.BIO_SEX: 1 = male 0 = female    
+2.HISPANIC: 1=Yes,0=No    
+3.WHITE : 1=Yes,0=No
+4.BLACK : 1=Yes,0=No          
+5.NAMERICAN: 1=Yes,0=No                      
+6.ASIAN: 1=Yes,0=No                      
+7.ALCEVR1: ever drank alcohol(1=Yes,0=No)
+8.marever1: ever smoked marijuana(1=Yes,0=No)    
+9.cocever1: ever used cocaine(1=Yes,0=No)                
+10.inhever1: ever used inhalants(1=Yes,0=No)             
+11.cigavail: cigarettes available in home(1=Yes,0=No)
+12.PASSIST: parents or public assistance(1=Yes,0=No)
+13.EXPEL1: ever expelled from school(1=Yes,0=No)
+14.TREG1: Ever smoked regularly(1=Yes,0=No)
 
-BIO_SEX: 1 = male 0 = female    
+#Explanatory Variables:
 
-HISPANIC: 1=Yes,0=No    
+1.Age
+2.ALCPROBS1:alcohol problems 0-6
+3.DEP1: depression scale
+4.ESTEEM1: self esteem scale       
+5.VIOL1:violent behaviour scale
+6.DEVIANT1: deviant behaviour scale     
+7.SCHCONN1: school connectedness scale       
+8.GPA1: gpa scale  4 points)
+9.FAMCONCT: family connectedness scale       
+10.PARACTV:parent activities scale
+11.PARPRES:parental presence scale
 
-WHITE : 1=Yes,0=No
+    Build a classification tree model evaluating if an adolescent would smoke 
+    regularly or not based on: gender, age, (race/ethnicity) Hispanic, White, Black, 
+    Native American and Asian, alcohol use, alcohol problems, marijuana use, cocaine 
+    use, inhalant use, availability of cigarettes in the home, depression, and 
+    self-esteem.
 
-BLACK : 1=Yes,0=No          
+    Build a classification tree model evaluation if an adolescent gets expelled or 
+    not from school based on their Gender and violent behavior.
+    Use random forest in relation to regular smokers as a target and explanatory 
+    variable specifically with Hispanic, White, Black, Native American and Asian.
 
-NAMERICAN: 1=Yes,0=No                      
-
-ASIAN: 1=Yes,0=No                      
-
-ALCEVR1: ever drank alcohol(1=Yes,0=No)   
-
-marever1: ever smoked marijuana(1=Yes,0=No)    
-
-cocever1: ever used cocaine(1=Yes,0=No)                
-
-inhever1: ever used inhalants(1=Yes,0=No)             
-
-cigavail: cigarettes available in home(1=Yes,0=No)
-
-PASSIST: parents or public assistance(1=Yes,0=No)
-
-EXPEL1: ever expelled from school(1=Yes,0=No)
-
-TREG1: Ever smoked regularly(1=Yes,0=No)
-
-Explanatory Variables:
-
-Age
-
-ALCPROBS1:alcohol problems 0-6
-
-DEP1: depression scale
-
-ESTEEM1: self esteem scale       
-
-VIOL1:violent behaviour scale
-
-DEVIANT1: deviant behaviour scale     
-
-SCHCONN1: school connectedness scale       
-
-GPA1: gpa scale  4 points)
-
-FAMCONCT: family connectedness scale       
-
-PARACTV:parent activities scale
-
-PARPRES:parental presence scale
-
-    Build a classification tree model evaluating if an adolescent would smoke regularly or not based on: gender, age, (race/ethnicity) Hispanic, White, Black, Native American and Asian, alcohol use, alcohol problems, marijuana use, cocaine use, inhalant use, availability of cigarettes in the home, depression, and self-esteem.
-
-    Build a classification tree model evaluation if an adolescent gets expelled or not from school based on their Gender and violent behavior.
-    Use random forest in relation to regular smokers as a target and explanatory variable specifically with Hispanic, White, Black, Native American and Asian.
-
-(Please make confusion matrix and also check accuracy score for each and every section)
-
+(Please make confusion matrix and also check accuracy score for each and every 
+section)
 
 """
 
