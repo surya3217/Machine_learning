@@ -74,8 +74,26 @@
     </ul>
 </ul>
 
+<ul>
+  <li> Dimension Reduction </li>
+    <ul>
+      <li> Backward Elimination </li>
+        <ul>
+          <li> OLS </li>
+        </ul>        
+      <li> Forward Elimination </li>
+        <ul>
+          <li> Factor Analysis (LDA) </li>
+          <li> Principal Component Analysis (PCA) </li>
+        </ul> 
+     </ul>
+</ul>
 
-
-
+<ul>
+  <li> Natural Language Processing (NLP) </li>
+    <ul>
+      <li> Library - NLTK </li>
+    </ul>
+</ul>
 
     
