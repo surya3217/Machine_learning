@@ -1,3 +1,99 @@
+
+"""
+Module 0: Introduction
+
+    What is Machine Learning
+    Types of ML: Supervised, Unsupervised, Reinforcement
+    Types of ML problems: Regression, Classification
+
+Module 1: Linear Models
+
+    Linear Regression
+    Logistic Regression
+
+Module 2: Model Evaluation
+
+    Training and Validation
+    Model Evaluation Metrics - Accuracy, RMSE, ROC, AUC, Confusion Matrix, 
+    Precision, Recall, F1 Score
+    Overfitting and Bias-Variance trade-off
+    Regularization (L1/L2)
+    K-fold Cross Validation
+
+Module 3: Tree-based Models
+
+    Decision Trees
+    Bagging and Boosting
+    Random Forest
+    Gradient Boosting Machines
+    Feature Importance
+
+Module 4: Model Selection
+
+    Model Pipelines
+    Feature Engineering
+    Ensemble Models (Advanced)
+    Unbalanced Classes (Advanced)
+"""
+
+"""
+https://realpython.com/tutorials/data-science/
+
+"Data science" is just about as broad of a term as they come. 
+It may be easiest to describe what it is by listing its more concrete components:
+    
+Data Exploration & Analysis (EDA):
+
+    Included here: Pandas; NumPy; SciPy; 
+    
+Data visualization: 
+    A pretty self-explanatory name. 
+    Taking data and turning it into something colorful.
+
+    Included here: Matplotlib; Seaborn; Datashader; others.
+
+Classical Machine Learning: 
+    Conceptually, we could define this as any supervised or unsupervised learning 
+    task that is not deep learning. 
+    Scikit-learn is far-and-away the go-to tool for implementing classification, 
+    regression, clustering, and dimensionality reduction, 
+
+    Included here: Scikit-Learn, StatsModels.
+
+
+Deep learning: 
+    This is a subset of machine learning that is seeing a renaissance, 
+    and is commonly implemented with Keras, among other libraries. 
+    It has seen monumental improvements over the last ~5 years, such as AlexNet in 2012, 
+    which was the first design to incorporate consecutive convolutional layers.
+
+    Included here: Keras, TensorFlow, and a whole host of others.
+
+
+Reinforcement Learning:
+
+Data storage and big data frameworks.
+    Big data is best defined as data that is either literally too large to 
+    reside on a single machine, 
+    or can’t be processed in the absence of a distributed environment. 
+    The Python bindings to Apache technologies play heavily here.
+
+    Apache Spark; Apache Hadoop; HDFS; Dask; h5py/pytables.
+
+
+Odds and ends. 
+    Includes subtopics such as Natural Language Processing, 
+    and Image Manipulation with libraries such as OpenCV.
+
+    Included here: nltk; Spacy; OpenCV/cv2; scikit-image; Cython.
+
+Deployment of Machine Learning Models
+    AWS
+    Dockers
+    API
+    Web ( HTML, CSS and JS )
+"""
+
 """
 ml-ai-01.jpg
 
