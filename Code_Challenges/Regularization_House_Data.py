@@ -36,6 +36,7 @@ from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 features_train = sc.fit_transform(features_train)
 features_test = sc.transform(features_test)
+#######################################################
 
 """
 Unregularized model - Linear regressor
