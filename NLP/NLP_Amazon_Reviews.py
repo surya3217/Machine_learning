@@ -6,7 +6,7 @@ The Data has sentences from Amazon Reviews
 Each line in Data Set is tagged positive or negative
 
 Create a Machine learning model using Natural Language Processing that can 
-predict wheter a given review about the product is positive or negative.
+predict whether a given review about the product is positive or negative.
 """
 
 import pandas as pd

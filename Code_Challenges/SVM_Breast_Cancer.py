@@ -82,7 +82,7 @@ cm = confusion_matrix(labels_test, labels_pred)
 print(cm)
 
 # Model Score
-score = classifier.score(features_test,labels_test)
+score = classifier.score(features_test,labels_test)  ## 95.23 %
 print(score*100)
 
 """
@@ -115,7 +115,7 @@ while (True):
     else:
         break
 
-print(features_obj) 
+#print(features_obj) 
 regressor_OLS.summary()
 
 print("""From the above algorithm, we can say that 3 columns are not significant in computing: 
@@ -124,8 +124,53 @@ print("""From the above algorithm, we can say that 3 columns are not significant
       3. Mitoses(column J)
 """)
 
+#################################################################################
+
+# Another Method
 
 
+# Importing the libraries
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import Imputer
+from sklearn.cross_validation import train_test_split as tts
+from sklearn.svm import SVC
+from sklearn.metrics import confusion_matrix
 
+# Importing the dataset
+data = pd.read_csv('breast_cancer.csv')
+x = data.iloc[:,1:-1].values
+y = data.iloc[:,-1].values
+
+# Handling Missing Values
+imp = Imputer(missing_values='NaN', strategy='most_frequent')
+x = imp.fit_transform(x)
+
+# Splitting the Dataset
+x_train, x_test, y_train, y_test = tts(x,y,random_state=0, test_size=0.25)
+
+# Building SVM model
+classifier =  SVC(kernel='linear', random_state=0)
+classifier.fit(x_train, y_train)
+
+# Predicting the values
+Pred = classifier.predict(x_test)
+
+# Making the Confusion Matrix
+cm = confusion_matrix(y_test, Pred)
+
+# Model Score
+score = classifier.score(x_test,y_test)
+
+val = np.array([6,2,5,3,2,7,9,2,4]).reshape(1,-1)
+val_Pred = classifier.predict(val)
+
+print ("Accuracy of the Model : "+str(round(score*100,2))+"%")
+print ("\n")
+
+if (val_Pred==4):
+    print ("Woman has Malignant Tumor")
+else:
+    print ("Woman has Benign Tumor")
 
 
