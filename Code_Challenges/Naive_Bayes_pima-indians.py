@@ -102,7 +102,7 @@ from sklearn.naive_bayes import GaussianNB, BernoulliNB, MultinomialNB
 # Importing dataset
 #in this dataset columns name is not given so i assign in below line 
 
-data = pd.read_csv("pima-indians-diabetes.csv",names=["A","B","C","D","E","F","G","H","I"])
+data = pd.read_csv("All CSV/pima-indians-diabetes.csv",names=["A","B","C","D","E","F","G","H","I"])
 data.head(5)
 data.columns
 print(data.shape)
@@ -119,9 +119,7 @@ used_features =["A","B","C","D","E","F","G","H"]
 
 # "I" is the column for labeleling 
 
-
 # Train classifier
-
 gnb.fit(
     features_train[used_features].values,  # features are passed
     features_train["I"].values      # labels is passed
@@ -138,6 +136,7 @@ print(cm_gnb)
 print( (cm_gnb[0][0] + cm_gnb[1][1]) / (cm_gnb[0][0] + cm_gnb[1][1] + cm_gnb[0][1] + cm_gnb[1][0]))
 
 #Output==>    0.7447916666666666
+
 
 
 mnb = MultinomialNB()
