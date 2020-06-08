@@ -230,7 +230,74 @@ regressor_OLS.summary()
 """
 
 
+###################################################################################
 
+# Another method
+
+import numpy as np
+import pandas as pd
+
+# Reading data from csv
+dataset = pd.read_csv("affairs.csv")
+
+# Separating data into Independent and Dependent Variables
+fe = dataset.iloc[:,:-1].values
+la = dataset.iloc[:,-1].values
+
+def Model(features, labels):
+    # Applying OneHotEncoding
+    from sklearn.preprocessing import OneHotEncoder
+    
+    col_to_ohe = [6,7]  # Columns to be OneHotEncoded
+    ohe=OneHotEncoder(categorical_features=[col_to_ohe])
+    features = ohe.fit_transform(features).toarray()
+    
+    # Getting indexes for the columns to be dropped, to avoid dummy variable trap
+    total_col, indexes = 0, []
+    for col in col_to_ohe:
+        unique_val_count = len(dataset.iloc[:,col].value_counts())
+        total_col += unique_val_count
+        indexes.append(total_col - unique_val_count)
+    
+    # Dropping the dummy variable trap columns
+    features = np.delete(features, indexes, axis=1)
+    
+    # Splitting the dataset into train and test
+    from sklearn.model_selection import train_test_split as TTS
+    
+    f_train,f_test,l_train,l_test = TTS(features, labels, test_size = 0.25,
+                                        random_state = 0)
+    
+    # Logistic Regression Model
+    from sklearn.linear_model import LogisticRegression
+    reg = LogisticRegression(random_state=0)
+    reg = reg.fit(f_train, l_train)
+    
+    pred = reg.predict(f_test)   # Prediction on test data
+    
+    # np.array([1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 25, 3, 1, 4, 16]).reshape(1,-1)
+    # Preprocessing the new individual's data
+    val = np.array([3, 25, 3, 1, 4, 16, 4, 2]).reshape(1,-1)
+    val = ohe.transform(val).toarray()
+    val = np.delete(val, indexes, axis=1)
+    
+    val_pred = reg.predict_proba(val)  # Predicting Individual's value
+    
+    # Confusion Matrix
+    from sklearn.metrics import confusion_matrix
+    cm = confusion_matrix(l_test, pred)
+    
+    # check the accuracy on the Model
+    mod_score = reg.score(f_test, l_test)
+    
+    return pred,val_pred,cm,mod_score
+
+Pred, val_Pred, CM, Score = Model(fe,la)
+
+print ("model accuracy using confusion matrix : "+str(CM))
+print ("model accuracy using .score() function : "+str(round(Score*100,2)))
+print ("percentage of total women actually had an affair : "+str(round(dataset["affair"].mean()*100,2))+"%")
+print ("probability of an affair for a random woman is : "+str(val_Pred)) 
 
 
 
